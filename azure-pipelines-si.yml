@@ -1,0 +1,16 @@
+# azure-pipelines.yml  (ou azure-pipelines-si.yml)
+trigger:
+- main
+
+resources:
+  repositories:
+  - repository: COE
+    type: git
+    name: 'COE-DevSecOps/COE-DevSecOps'
+    ref: refs/heads/main
+
+extends:
+  template: .azure-pipelines/templates/devsecops-template.yml@COE
+  parameters:
+    product_name: $(System.TeamProject)
+    artifactName: security-reports
